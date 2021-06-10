@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.servicios;
 
 import gt.gob.banguat.variables.ws.InfoVariable;
@@ -15,10 +10,6 @@ import javax.xml.ws.WebServiceRef;
 import org.dao.DaoCuenta;
 import org.modelo.Cuenta;
 
-/**
- *
- * @author family.user
- */
 @WebService(serviceName = "Servicios")
 public class Servicios {
 
@@ -26,21 +17,18 @@ public class Servicios {
     private TipoCambio service;
 
     DaoCuenta daoCuenta = new DaoCuenta();
+    Cuenta cuenta = new Cuenta();
+    List<Cuenta> lstCuentas;
 
-    /**
-     * Web service operation
-     */
-    @WebMethod(operationName = "Cuentas")
-    public String Cuentas() {
-        String res="";
-        Cuenta cuenta = new Cuenta();
-        List<Cuenta> list = daoCuenta.listar();
-        Iterator<Cuenta> iter = list.iterator();
-        while (iter.hasNext()) {
-            cuenta = iter.next();
-            res= res +" || "+cuenta.getIdClient() + cuenta.getIdCuenta() + cuenta.getNumeroCuenta() + cuenta.getTipoCuenta() +cuenta.getTipo()+ cuenta.getSaldoQ() + cuenta.getSaldoD();
-        }
-        return res;
+    @WebMethod(operationName = "getCuentas")
+    public List<Cuenta> getLstCuentas() {
+        lstCuentas = daoCuenta.listar();
+        return lstCuentas;
+    }
+
+    @WebMethod(operationName = "setCuentas")
+    public void setLstCuentas(List<Cuenta> lstCuentas) {
+        this.lstCuentas = lstCuentas;
     }
 
 }
