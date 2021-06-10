@@ -5,10 +5,13 @@
  */
 package org.servicios;
 
+import gt.gob.banguat.variables.ws.InfoVariable;
+import gt.gob.banguat.variables.ws.TipoCambio;
+import java.util.Iterator;
 import java.util.List;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
-import javax.jws.WebParam;
+import javax.xml.ws.WebServiceRef;
 import org.dao.DaoCuenta;
 import org.modelo.Cuenta;
 
@@ -18,14 +21,26 @@ import org.modelo.Cuenta;
  */
 @WebService(serviceName = "Servicios")
 public class Servicios {
+
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/www.banguat.gob.gt/variables/ws/TipoCambio.asmx.wsdl")
+    private TipoCambio service;
+
     DaoCuenta daoCuenta = new DaoCuenta();
+
     /**
      * Web service operation
      */
     @WebMethod(operationName = "Cuentas")
-    public List<Cuenta> Cuentas() {
-        //TODO write your implementation code here:
-        List datos = daoCuenta.listar();
-        return datos;
+    public String Cuentas() {
+        String res="";
+        Cuenta cuenta = new Cuenta();
+        List<Cuenta> list = daoCuenta.listar();
+        Iterator<Cuenta> iter = list.iterator();
+        while (iter.hasNext()) {
+            cuenta = iter.next();
+            res= res +" || "+cuenta.getIdClient() + cuenta.getIdCuenta() + cuenta.getNumeroCuenta() + cuenta.getTipoCuenta() +cuenta.getTipo()+ cuenta.getSaldoQ() + cuenta.getSaldoD();
+        }
+        return res;
     }
+
 }
