@@ -2,6 +2,7 @@ package org.modelo;
 
 public class Cuenta {
     private int idClient;
+    private String cliente;
     private int idCuenta;
     private String numeroCuenta;
     private int tipoCuenta;
@@ -11,8 +12,9 @@ public class Cuenta {
     public Cuenta() {
     }
 
-    public Cuenta(int idClient, int idCuenta, String numeroCuenta, int tipoCuenta, double saldoQ, double saldoD) {
+    public Cuenta(int idClient, String cliente, int idCuenta, String numeroCuenta, int tipoCuenta, double saldoQ, double saldoD) {
         this.idClient = idClient;
+        this.cliente = cliente;
         this.idCuenta = idCuenta;
         this.numeroCuenta = numeroCuenta;
         this.tipoCuenta = tipoCuenta;
@@ -26,6 +28,14 @@ public class Cuenta {
 
     public void setIdClient(int idClient) {
         this.idClient = idClient;
+    }
+
+    public String getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(String cliente) {
+        this.cliente = cliente;
     }
 
     public int getIdCuenta() {

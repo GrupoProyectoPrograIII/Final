@@ -6,8 +6,11 @@ public class Movimiento {
     private int idMovimiento;
     private Timestamp fechaMovimiento;
     private int idCliente;
+    private String cliente;
     private int idCuenta;
+    private String cuenta;
     private int tipoMovimiento;
+    private String movimiento;
     private String usuario;
     private double tipoCambio;
     private double saldoQ;
@@ -16,12 +19,15 @@ public class Movimiento {
     public Movimiento() {
     }
 
-    public Movimiento(int idMovimiento, Timestamp fechaMovimiento, int idCliente, int idCuenta, int tipoMovimiento, String usuario, double tipoCambio, double saldoQ, double saldoD) {
+    public Movimiento(int idMovimiento, Timestamp fechaMovimiento, int idCliente, String cliente, int idCuenta, String cuenta, int tipoMovimiento, String movimiento, String usuario, double tipoCambio, double saldoQ, double saldoD) {
         this.idMovimiento = idMovimiento;
         this.fechaMovimiento = fechaMovimiento;
         this.idCliente = idCliente;
+        this.cliente = cliente;
         this.idCuenta = idCuenta;
+        this.cuenta = cuenta;
         this.tipoMovimiento = tipoMovimiento;
+        this.movimiento = movimiento;
         this.usuario = usuario;
         this.tipoCambio = tipoCambio;
         this.saldoQ = saldoQ;
@@ -52,6 +58,14 @@ public class Movimiento {
         this.idCliente = idCliente;
     }
 
+    public String getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(String cliente) {
+        this.cliente = cliente;
+    }
+
     public int getIdCuenta() {
         return idCuenta;
     }
@@ -60,12 +74,28 @@ public class Movimiento {
         this.idCuenta = idCuenta;
     }
 
+    public String getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(String cuenta) {
+        this.cuenta = cuenta;
+    }
+
     public int getTipoMovimiento() {
         return tipoMovimiento;
     }
 
     public void setTipoMovimiento(int tipoMovimiento) {
         this.tipoMovimiento = tipoMovimiento;
+    }
+
+    public String getMovimiento() {
+        return movimiento;
+    }
+
+    public void setMovimiento(String movimiento) {
+        this.movimiento = movimiento;
     }
 
     public String getUsuario() {
@@ -99,4 +129,5 @@ public class Movimiento {
     public void setSaldoD(double saldoD) {
         this.saldoD = saldoD;
     }
+    
 }
