@@ -26,3 +26,7 @@ hs_err_pid*
 /WebApplication_final/build/
 /webAppFinal/nbproject/private/
 /webServiceFinal/nbproject/private/
+/webAppFinal/build/
+/webAppFinal/dist/
+/webServiceFinal/build/
+/webServiceFinal/dist/
