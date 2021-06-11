@@ -27,7 +27,7 @@ public class DaoMovimiento implements CrudMovimiento {
     public List listar() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         List<Movimiento> lstMovimiento = new ArrayList<>();
-        strSql = "SELECT dbo.MOVIMIENTOS.ID_MOVIMIENTO, dbo.MOVIMIENTOS.FEC_MOVIMIENTO, dbo.CUENTA.NUMERO_CUENTA, dbo.CLIENTE.NOMBRE, dbo.CLIENTE.APELLIDO, dbo.TIPO_CUENTA.DESCRIPCION, dbo.TIPO_MOVIMIENTO.MOVIMIENTO, dbo.MOVIMIENTOS.TIPO_CAMBIO, dbo.MOVIMIENTOS.SALDO_Q, dbo.MOVIMIENTOS.SALDO_D FROM dbo.MOVIMIENTOS INNER JOIN dbo.TIPO_MOVIMIENTO ON dbo.MOVIMIENTOS.TIPO_MOVIMIENTO = dbo.TIPO_MOVIMIENTO.TIPO_MOVIMIENTO INNER JOIN dbo.CUENTA ON dbo.MOVIMIENTOS.ID_CLIENTE = dbo.CUENTA.ID_CLIENTE AND dbo.MOVIMIENTOS.ID_CUENTA = dbo.CUENTA.ID_CUENTA INNER JOIN dbo.TIPO_CUENTA ON dbo.CUENTA.TIPO_CUENTA = dbo.TIPO_CUENTA.TIPO_CUENTA INNER JOIN dbo.CLIENTE ON dbo.CUENTA.ID_CLIENTE = dbo.CLIENTE.ID_CLIENTE";
+        strSql = "SELECT dbo.MOVIMIENTOS.ID_MOVIMIENTO, dbo.MOVIMIENTOS.FEC_MOVIMIENTO, dbo.CUENTA.NUMERO_CUENTA, dbo.MOVIMIENTOS.ID_CLIENTE, dbo.CLIENTE.NOMBRE, dbo.CLIENTE.APELLIDO, dbo.TIPO_CUENTA.DESCRIPCION, dbo.TIPO_MOVIMIENTO.MOVIMIENTO, dbo.MOVIMIENTOS.TIPO_CAMBIO, dbo.MOVIMIENTOS.SALDO_Q, dbo.MOVIMIENTOS.SALDO_D FROM dbo.MOVIMIENTOS INNER JOIN dbo.TIPO_MOVIMIENTO ON dbo.MOVIMIENTOS.TIPO_MOVIMIENTO = dbo.TIPO_MOVIMIENTO.TIPO_MOVIMIENTO INNER JOIN dbo.CUENTA ON dbo.MOVIMIENTOS.ID_CLIENTE = dbo.CUENTA.ID_CLIENTE AND dbo.MOVIMIENTOS.ID_CUENTA = dbo.CUENTA.ID_CUENTA INNER JOIN dbo.TIPO_CUENTA ON dbo.CUENTA.TIPO_CUENTA = dbo.TIPO_CUENTA.TIPO_CUENTA INNER JOIN dbo.CLIENTE ON dbo.CUENTA.ID_CLIENTE = dbo.CLIENTE.ID_CLIENTE";
         try {
             conexion.open();
             rs = conexion.executeQuery(strSql);
@@ -36,6 +36,7 @@ public class DaoMovimiento implements CrudMovimiento {
                 movimiento.setIdMovimiento(rs.getInt("ID_MOVIMIENTO"));
                 movimiento.setFechaMovimiento(rs.getString("FEC_MOVIMIENTO"));
                 movimiento.setCuenta(rs.getString("NUMERO_CUENTA"));
+                movimiento.setIdCliente(rs.getInt("ID_CLIENTE"));
                 movimiento.setNombre(rs.getString("NOMBRE"));
                 movimiento.setApellido(rs.getString("APELLIDO"));
                 movimiento.setMovimiento(rs.getString("DESCRIPCION"));
