@@ -8,7 +8,9 @@ import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.xml.ws.WebServiceRef;
 import org.dao.DaoCuenta;
+import org.dao.DaoMovimiento;
 import org.modelo.Cuenta;
+import org.modelo.Movimiento;
 
 @WebService(serviceName = "Servicios")
 public class Servicios {
@@ -29,6 +31,16 @@ public class Servicios {
     @WebMethod(operationName = "setCuentas")
     public void setLstCuentas(List<Cuenta> lstCuentas) {
         this.lstCuentas = lstCuentas;
+    }
+    DaoMovimiento daoMovimiento = new DaoMovimiento();
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "listarMovimiento")
+    public List<Movimiento> listarMovimiento() {
+        //TODO write your implementation code here:
+        List mov = daoMovimiento.listar();
+        return mov;
     }
 
 }
