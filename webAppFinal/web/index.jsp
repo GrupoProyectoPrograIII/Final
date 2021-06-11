@@ -1,7 +1,13 @@
 
+<%@page import="org.servicios.GetMovimiento"%>
+<%@page import="org.servicios.Movimiento"%>
+<%@page import="org.servicios.Cliente"%>
+<%@page import="org.servicios.GetCliente"%>
+<%@page import="org.servicios.TipoCuenta"%>
+<%@page import="org.servicios.GetTipoCuenta"%>
+<%@page import="org.servicios.GetCuentas"%>
 <%@page import="org.servicios.Cuenta"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="org.servicios.Cuentas"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,13 +24,31 @@
                 <h3>Fecha: hoy</h3>
                 <h3>Cuentas:</h3>
                 <select onchange="">
+
                     <option disabled="true" selected="true">Seleccione una cuenta</option>
-                    <option> Opcion 1</option>
-                    <option> Opcion 2</option>
-                    <option> Opcion 3</option>
+                    <%
+                        GetCuentas gCuentas = new GetCuentas();
+                        List<Cuenta> lstCuenta = gCuentas.getCuentas();
+                        for (Cuenta cuenta : lstCuenta) {
+                    %>
+                    <option><%=cuenta.getNumeroCuenta()%></option>
+                    <%}%>
                 </select>
-                <h3>Cuentas de </h3>
-                <h3>Cliente Nombre</h3>
+                <%
+                    GetTipoCuenta gTipoCuenta = new GetTipoCuenta();
+                    List<TipoCuenta> lstTipoCuenta = gTipoCuenta.getTipoCuenta();
+                    for(TipoCuenta tipoCuenta : lstTipoCuenta){
+                %>
+                <h3>Cuentas de <%=tipoCuenta.getTipoCuenta() + tipoCuenta.getDescripcion()%></h3>
+                <%}%>
+                
+                <%
+                    GetCliente gCliente = new GetCliente();
+                    List<Cliente> lstCliente = gCliente.getCliente();
+                    for(Cliente cliente : lstCliente){
+                %>
+                <h3>Cliente: <%=cliente.getNombre()+cliente.getApellido()%></h3>
+                <%}%>
                 <select onchange="">
                     <option disabled="true" selected="true">Seleccione</option>
                     <option> Abono</option>
@@ -38,45 +62,52 @@
         </div>
         <h1 style="margin: 0 10% 0 15%; padding-top: 2%;">Estado de Cuentas</h1>
         <div style="margin: 0 13% 0 13%; padding:1% 3% 3% 3%;  background-color: red;">
-            <h2>
-                <%-- start web service invocation --%><hr/>
-                <%
-                    Cuentas cuenta = new Cuentas();
-                    List<Cuenta> lstCuenta = new ArrayList<>();
-                    lstCuenta = cuenta.getCuentas();
-                %>
-                <%-- end web service invocation --%><hr/>
-            </h2>
+
+            <%-- start web service invocation --%><hr/>
+
+            <%-- end web service invocation --%><hr/>
             <h3>Cliente</h3>
             <select>
                 <option disabled="true" selected="true">Seleccione un Cliente</option>
-                <option>cliente 1</option>
-                <option>cliente 2</option>
-                <option>cliente 3</option>
-                <option>cliente 4</option> 
+                
+                <%
+                    gCliente = new GetCliente();
+                    lstCliente = gCliente.getCliente();
+                    for(Cliente cliente : lstCliente){
+                %>
+                <option>Cliente: <%=cliente.getNombre()+cliente.getApellido()%></option>
+                <%}%>
             </select>
             <br><br>
 
             <table border="1" style="width: 100%">
                 <thead>
-                <th>idCliente</th>
-                <th>idCuentas</th>
-                <th>numero cuenta</th>
-                <th>tipo cuenta</th>
-                <th>tipo</th>
-                <th>saldo Q</th>
-                <th>saldo D</th>
+                <th>Id Movimiento</th>
+                <th>Fecha Movimiento</th>
+                <th>Cliente</th>
+                <th>Cuenta</th>
+                <th>Tipo Movimiento</th>
+                <th>Tipo Cambio</th>
+                <th>Saldo Q</th>
+                <th>Saldo $</th>
                 </thead>
                 <tbody>
+                    <%
+                        GetMovimiento gMovimiento = new GetMovimiento();
+                        List<Movimiento> lstMovimiento = gMovimiento.getMovimiento();
+                        for(Movimiento movimiento : lstMovimiento){
+                    %>
                     <tr>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>3</td>
-                        <td>4</td>
-                        <td>5</td>
-                        <td>6</td>
-                        <td>7</td>
+                        <td><%=movimiento.getIdMovimiento()%></td>
+                        <td><%=movimiento.getFechaMovimiento()%></td>
+                        <td><%=movimiento.getCliente()%></td>
+                        <td><%=movimiento.getCuenta()%></td>
+                        <td><%=movimiento.getMovimiento()%></td>
+                        <td><%=movimiento.getTipoCambio()%></td>
+                        <td><%=movimiento.getSaldoQ()%></td>
+                        <td><%=movimiento.getSaldoD()%></td>
                     </tr>
+                    <%}%>
                 </tbody>
             </table>
         </div>
