@@ -48,24 +48,19 @@
 
 <xs:complexType name="movimiento">
 <xs:sequence>
-<xs:element name="cliente" type="xs:string" minOccurs="0"/>
+<xs:element name="apellido" type="xs:string" minOccurs="0"/>
 <xs:element name="cuenta" type="xs:string" minOccurs="0"/>
-<xs:element name="fechaMovimiento" type="tns:timestamp" minOccurs="0"/>
+<xs:element name="fechaMovimiento" type="xs:string" minOccurs="0"/>
 <xs:element name="idCliente" type="xs:int"/>
 <xs:element name="idCuenta" type="xs:int"/>
 <xs:element name="idMovimiento" type="xs:int"/>
 <xs:element name="movimiento" type="xs:string" minOccurs="0"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
 <xs:element name="saldoD" type="xs:double"/>
 <xs:element name="saldoQ" type="xs:double"/>
 <xs:element name="tipoCambio" type="xs:double"/>
 <xs:element name="tipoMovimiento" type="xs:int"/>
 <xs:element name="usuario" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="timestamp">
-<xs:sequence>
-<xs:element name="nanos" type="xs:int"/>
 </xs:sequence>
 </xs:complexType>
 

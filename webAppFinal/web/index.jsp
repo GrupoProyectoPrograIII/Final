@@ -11,9 +11,10 @@
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
         <title>Banco</title>
 
     </head>
@@ -23,7 +24,7 @@
             <form>
                 <h3>Fecha: hoy</h3>
                 <h3>Cuentas:</h3>
-                <select onchange="">
+                <select id="cuenta">
 
                     <option disabled="true" selected="true">Seleccione una cuenta</option>
                     <%
@@ -31,32 +32,25 @@
                         List<Cuenta> lstCuenta = gCuentas.getCuentas();
                         for (Cuenta cuenta : lstCuenta) {
                     %>
-                    <option><%=cuenta.getNumeroCuenta()%></option>
+                    <option value="<%=cuenta.getNombreCliente()%>,<%=cuenta.getApellidoCliente()%>,<%=cuenta.getDescripcion()%>"><%=cuenta.getNumeroCuenta()%></option>
                     <%}%>
                 </select>
-                <%
-                    GetTipoCuenta gTipoCuenta = new GetTipoCuenta();
-                    List<TipoCuenta> lstTipoCuenta = gTipoCuenta.getTipoCuenta();
-                    for(TipoCuenta tipoCuenta : lstTipoCuenta){
-                %>
-                <h3>Cuentas de <%=tipoCuenta.getTipoCuenta() + tipoCuenta.getDescripcion()%></h3>
-                <%}%>
-                
+
+                <h3 id="tipoCuenta">Cuenta de: </h3>
+
                 <%
                     GetCliente gCliente = new GetCliente();
                     List<Cliente> lstCliente = gCliente.getCliente();
-                    for(Cliente cliente : lstCliente){
                 %>
-                <h3>Cliente: <%=cliente.getNombre()+cliente.getApellido()%></h3>
-                <%}%>
+                <h3 id="Cliente">Cliente:</h3>
                 <select onchange="">
                     <option disabled="true" selected="true">Seleccione</option>
                     <option> Abono</option>
                     <option> Retiro</option>
                 </select>
                 <br><br>
-                <input placeholder="cantidad (en $)">
-                <br><br>
+                <input id="cantidadD" placeholder="cantidad (en $)"><h3 id="cantidadQ">Q</h3>
+                
                 <button>Generar Transaccion</button>
             </form>
         </div>
@@ -66,13 +60,13 @@
             <h3>Cliente</h3>
             <select>
                 <option disabled="true" selected="true">Seleccione un Cliente</option>
-                
+
                 <%
                     gCliente = new GetCliente();
                     lstCliente = gCliente.getCliente();
-                    for(Cliente cliente : lstCliente){
+                    for (Cliente cliente : lstCliente) {
                 %>
-                <option>Cliente: <%=cliente.getNombre()+cliente.getApellido()%></option>
+                <option><%=cliente.getApellido()%>, <%=cliente.getNombre()%></option>
                 <%}%>
             </select>
             <br><br>
@@ -92,7 +86,7 @@
                     <%
                         GetMovimiento gMovimiento = new GetMovimiento();
                         List<Movimiento> lstMovimiento = gMovimiento.getMovimiento();
-                        for(Movimiento movimiento : lstMovimiento){
+                        for (Movimiento movimiento : lstMovimiento) {
                     %>
                     <tr>
                         <td><%=movimiento.getIdMovimiento()%></td>
@@ -109,4 +103,34 @@
             </table>
         </div>
     </body>
+    <script>
+        $(document).ready(function () {
+            $('#cuenta').on('change', function () {
+                datos(this.value);
+            });
+        });
+        $(document).ready(function () {
+            $('#cantidadD').on('change', function () {
+                cambioQ(this.value);
+            });
+        });
+        function datos(a) {
+            console.log(a);
+            cuenta = a.split(',');
+            document.getElementById("Cliente").value = ('Cliente: ' + cuenta[1] + ',' + cuenta[0]);
+            $("#Cliente").text('Cliente: ' + cuenta[1] + ',' + cuenta[0]);
+
+
+            document.getElementById("tipoCuenta").value = 'Cuenta de: ' + cuenta[2];
+            $("#tipoCuenta").text('Cuenta de: ' + cuenta[2]);
+        }
+        function cambioQ(b){
+            console.log("$"+b);
+            q= b*7.74;
+            console.log("Q"+q);
+            
+            document.getElementById("cantidadQ").value = 'Q' + q;
+            $("#cantidadQ").text('Q' + q);
+        }
+    </script>
 </html>

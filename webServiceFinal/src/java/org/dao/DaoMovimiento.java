@@ -34,7 +34,7 @@ public class DaoMovimiento implements CrudMovimiento {
             while (rs.next()) {
                 Movimiento movimiento = new Movimiento();
                 movimiento.setIdMovimiento(rs.getInt("ID_MOVIMIENTO"));
-                movimiento.setFechaMovimiento((rs.getTimestamp("FEC_MOVIMIENTO")).toString());
+                movimiento.setFechaMovimiento(rs.getString("FEC_MOVIMIENTO"));
                 movimiento.setCuenta(rs.getString("NUMERO_CUENTA"));
                 movimiento.setNombre(rs.getString("NOMBRE"));
                 movimiento.setApellido(rs.getString("APELLIDO"));

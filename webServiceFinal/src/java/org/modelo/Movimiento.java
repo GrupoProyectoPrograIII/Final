@@ -1,6 +1,5 @@
 package org.modelo;
 
-import java.sql.Timestamp;
 
 public class Movimiento {
     private int idMovimiento;
