@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 import org.config.Conexion;
 import org.crud.CrudCliente;
 import org.modelo.Cliente;
-import org.modelo.Cuenta;
+//import org.modelo.Cuenta;
 
 public class DaoCliente implements CrudCliente {
 
@@ -49,7 +49,29 @@ public class DaoCliente implements CrudCliente {
 
     @Override
     public Cliente list(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Cliente cliente = new Cliente();
+        strSql = "SELECT * FROM CLIENTE WHERE ID_CLIENTE="+id;
+        try {
+           conexion.open();
+            rs = conexion.executeQuery(strSql);
+            while(rs.next()){
+                //Cliente cliente = new Cliente();
+                cliente.setIdCliente(rs.getInt("ID_CLIENTE"));
+                cliente.setCui(rs.getString("CUI"));                
+                cliente.setNombre(rs.getString("NOMBRE"));
+                cliente.setApellido(rs.getString("APELLIDO"));
+                cliente.setTelefono(rs.getString("TELEFONO"));
+                cliente.setDireccion(rs.getString("DIRECCION"));                
+                //lstCliente.add(cliente);
+            }
+            rs.close();
+            conexion.close();            
+        } catch(ClassNotFoundException ex){
+            Logger.getLogger(DaoCliente.class.getName()).log(Level.SEVERE, null, ex);
+        } catch(Exception ex){
+            Logger.getLogger(DaoCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cliente;
     }
 
     @Override

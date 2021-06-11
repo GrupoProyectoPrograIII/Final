@@ -4,6 +4,7 @@ import gt.gob.banguat.variables.ws.TipoCambio;
 import java.util.List;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.xml.ws.WebServiceRef;
 import org.dao.DaoCliente;
 import org.dao.DaoCuenta;
@@ -93,5 +94,14 @@ public class Servicios {
     @WebMethod(operationName = "setTipoMovimiento")
     public void setLstTipoMovimiento(List<TipoMovimiento> lstTipoMovimiento) {
         this.lstTipoMovimiento = lstTipoMovimiento;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "listarClienteID")
+    public Cliente listarClienteID(@WebParam(name = "idCliente") int idCliente) {
+        Cliente id = daoCliente.list(idCliente);
+        return id;
     }
 }
