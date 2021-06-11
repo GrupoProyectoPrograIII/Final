@@ -6,7 +6,8 @@ public class Movimiento {
     private int idMovimiento;
     private Timestamp fechaMovimiento;
     private int idCliente;
-    private String cliente;
+    private String nombre;
+    private String apellido;
     private int idCuenta;
     private String cuenta;
     private int tipoMovimiento;
@@ -19,11 +20,12 @@ public class Movimiento {
     public Movimiento() {
     }
 
-    public Movimiento(int idMovimiento, Timestamp fechaMovimiento, int idCliente, String cliente, int idCuenta, String cuenta, int tipoMovimiento, String movimiento, String usuario, double tipoCambio, double saldoQ, double saldoD) {
+    public Movimiento(int idMovimiento, Timestamp fechaMovimiento, int idCliente, String nombre, String apellido, int idCuenta, String cuenta, int tipoMovimiento, String movimiento, String usuario, double tipoCambio, double saldoQ, double saldoD) {
         this.idMovimiento = idMovimiento;
         this.fechaMovimiento = fechaMovimiento;
         this.idCliente = idCliente;
-        this.cliente = cliente;
+        this.nombre = nombre;
+        this.apellido = apellido;
         this.idCuenta = idCuenta;
         this.cuenta = cuenta;
         this.tipoMovimiento = tipoMovimiento;
@@ -58,12 +60,20 @@ public class Movimiento {
         this.idCliente = idCliente;
     }
 
-    public String getCliente() {
-        return cliente;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setCliente(String cliente) {
-        this.cliente = cliente;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public int getIdCuenta() {
@@ -129,5 +139,7 @@ public class Movimiento {
     public void setSaldoD(double saldoD) {
         this.saldoD = saldoD;
     }
+
+    
     
 }
