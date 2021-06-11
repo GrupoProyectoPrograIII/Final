@@ -20,17 +20,19 @@ public class DaoCuenta implements CrudCuenta{
     public List listar() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         List<Cuenta> lstCuenta = new ArrayList<>();
-        strSql = "SELECT dbo.CUENTA.ID_CLIENTE, dbo.CUENTA.ID_CUENTA, dbo.CUENTA.NUMERO_CUENTA AS CUENTA, dbo.TIPO_CUENTA.DESCRIPCION AS TIPO, dbo.CLIENTE.NOMBRE, dbo.CLIENTE.APELLIDO, dbo.CUENTA.SALDO_Q, dbo.CUENTA.SALDO_D FROM dbo.CLIENTE INNER JOIN dbo.CUENTA ON dbo.CLIENTE.ID_CLIENTE = dbo.CUENTA.ID_CLIENTE INNER JOIN dbo.TIPO_CUENTA ON dbo.CUENTA.TIPO_CUENTA = dbo.TIPO_CUENTA.TIPO_CUENTA";
+        strSql = "SELECT dbo.CUENTA.ID_CLIENTE, dbo.CUENTA.ID_CUENTA, dbo.CUENTA.NUMERO_CUENTA AS CUENTA, dbo.TIPO_CUENTA.DESCRIPCION AS DESCRIPCION, dbo.CLIENTE.NOMBRE, dbo.CLIENTE.APELLIDO, dbo.CUENTA.SALDO_Q, dbo.CUENTA.SALDO_D FROM dbo.CLIENTE INNER JOIN dbo.CUENTA ON dbo.CLIENTE.ID_CLIENTE = dbo.CUENTA.ID_CLIENTE INNER JOIN dbo.TIPO_CUENTA ON dbo.CUENTA.TIPO_CUENTA = dbo.TIPO_CUENTA.TIPO_CUENTA";
         
         try {
             conexion.open();
             rs = conexion.executeQuery(strSql);
             while(rs.next()){
                 Cuenta cuenta = new Cuenta();
-                cuenta.setIdClient(rs.getInt("ID_CLIENTE"));
+                cuenta.setIdCliente(rs.getInt("ID_CLIENTE"));
                 cuenta.setIdCuenta(rs.getInt("ID_CUENTA"));
                 cuenta.setNumeroCuenta(rs.getString("CUENTA"));
-                cuenta.setTipo(rs.getString("TIPO"));
+                cuenta.setDescripcion(rs.getString("DESCRIPCION"));
+                cuenta.setNombreCliente(rs.getString("NOMBRE"));
+                cuenta.setApellidoCliente(rs.getString("APELLIDO"));
                 cuenta.setSaldoQ(rs.getDouble("SALDO_Q"));
                 cuenta.setSaldoD(rs.getDouble("SALDO_D"));
                 lstCuenta.add(cuenta);
