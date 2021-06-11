@@ -104,4 +104,13 @@ public class Servicios {
         Cliente id = daoCliente.list(idCliente);
         return id;
     }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "listarCuentaID")
+    public Cuenta listarCuentaID(@WebParam(name = "idCuenta") int idCuenta) {
+        Cuenta id = daoCuenta.list(idCuenta);
+        return id;
+    }
 }

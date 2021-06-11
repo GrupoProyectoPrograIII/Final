@@ -50,7 +50,32 @@ public class DaoCuenta implements CrudCuenta{
 
     @Override
     public Cuenta list(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Cuenta cuenta = new Cuenta();
+        strSql = "SELECT * FROM CUENTA WHERE ID_CUENTA="+id;
+        try {
+           conexion.open();
+            rs = conexion.executeQuery(strSql);
+            while(rs.next()){
+                //Cuenta cuenta = new Cuenta();
+                cuenta.setIdCliente(rs.getInt("ID_CLIENTE"));
+                cuenta.setIdCuenta(rs.getInt("ID_CUENTA"));
+                cuenta.setNumeroCuenta(rs.getString("NUMERO_CUENTA"));
+                cuenta.setNombreCliente(rs.getString("NOMBRE"));
+                cuenta.setApellidoCliente(rs.getString("APELLIDO"));
+                cuenta.setDescripcion(rs.getString("DESCRIPCION"));
+                cuenta.setTipoCuenta(rs.getInt("TIPO_CUENTA"));
+                cuenta.setSaldoQ(rs.getDouble("SALDO_Q"));
+                cuenta.setSaldoD(rs.getDouble("SALDO_D"));
+                //lstCuenta.add(cuenta);
+            }
+            rs.close();
+            conexion.close();            
+        } catch(ClassNotFoundException ex){
+            Logger.getLogger(DaoCuenta.class.getName()).log(Level.SEVERE, null, ex);
+        } catch(Exception ex){
+            Logger.getLogger(DaoCuenta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cuenta;
     }
 
     
