@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class Movimiento {
     private int idMovimiento;
-    private Timestamp fechaMovimiento;
+    private String fechaMovimiento;
     private int idCliente;
     private String nombre;
     private String apellido;
@@ -20,7 +20,7 @@ public class Movimiento {
     public Movimiento() {
     }
 
-    public Movimiento(int idMovimiento, Timestamp fechaMovimiento, int idCliente, String nombre, String apellido, int idCuenta, String cuenta, int tipoMovimiento, String movimiento, String usuario, double tipoCambio, double saldoQ, double saldoD) {
+    public Movimiento(int idMovimiento, String fechaMovimiento, int idCliente, String nombre, String apellido, int idCuenta, String cuenta, int tipoMovimiento, String movimiento, String usuario, double tipoCambio, double saldoQ, double saldoD) {
         this.idMovimiento = idMovimiento;
         this.fechaMovimiento = fechaMovimiento;
         this.idCliente = idCliente;
@@ -44,11 +44,11 @@ public class Movimiento {
         this.idMovimiento = idMovimiento;
     }
 
-    public Timestamp getFechaMovimiento() {
+    public String getFechaMovimiento() {
         return fechaMovimiento;
     }
 
-    public void setFechaMovimiento(Timestamp fechaMovimiento) {
+    public void setFechaMovimiento(String fechaMovimiento) {
         this.fechaMovimiento = fechaMovimiento;
     }
 
@@ -139,7 +139,5 @@ public class Movimiento {
     public void setSaldoD(double saldoD) {
         this.saldoD = saldoD;
     }
-
-    
-    
+ 
 }

@@ -18,7 +18,6 @@ public class DaoCuenta implements CrudCuenta{
     
     @Override
     public List listar() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         List<Cuenta> lstCuenta = new ArrayList<>();
         strSql = "SELECT dbo.CUENTA.ID_CLIENTE, dbo.CUENTA.ID_CUENTA, dbo.CUENTA.NUMERO_CUENTA AS CUENTA, dbo.TIPO_CUENTA.DESCRIPCION AS DESCRIPCION, dbo.CLIENTE.NOMBRE, dbo.CLIENTE.APELLIDO, dbo.CUENTA.SALDO_Q, dbo.CUENTA.SALDO_D FROM dbo.CLIENTE INNER JOIN dbo.CUENTA ON dbo.CLIENTE.ID_CLIENTE = dbo.CUENTA.ID_CLIENTE INNER JOIN dbo.TIPO_CUENTA ON dbo.CUENTA.TIPO_CUENTA = dbo.TIPO_CUENTA.TIPO_CUENTA";
         

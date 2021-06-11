@@ -63,9 +63,6 @@
         <h1 style="margin: 0 10% 0 15%; padding-top: 2%;">Estado de Cuentas</h1>
         <div style="margin: 0 13% 0 13%; padding:1% 3% 3% 3%;  background-color: red;">
 
-            <%-- start web service invocation --%><hr/>
-
-            <%-- end web service invocation --%><hr/>
             <h3>Cliente</h3>
             <select>
                 <option disabled="true" selected="true">Seleccione un Cliente</option>
@@ -100,7 +97,7 @@
                     <tr>
                         <td><%=movimiento.getIdMovimiento()%></td>
                         <td><%=movimiento.getFechaMovimiento()%></td>
-                        <td><%=movimiento.getCliente()%></td>
+                        <td><%=movimiento.getApellido()%>,<%=movimiento.getNombre()%></td>
                         <td><%=movimiento.getCuenta()%></td>
                         <td><%=movimiento.getMovimiento()%></td>
                         <td><%=movimiento.getTipoCambio()%></td>
