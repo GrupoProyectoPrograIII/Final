@@ -1,12 +1,95 @@
 <?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.2-b608 (trunk-7979; 2015-01-21T12:50:19+0000) JAXWS-RI/2.2.11-b150120.1832 JAXWS-API/2.2.12 JAXB-RI/2.2.12-b141219.1637 JAXB-API/2.2.13-b141020.1521 svn-revision#unknown. --><xs:schema xmlns:tns="http://servicios.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://servicios.org/">
 
+<xs:element name="getCliente" type="tns:getCliente"/>
+
+<xs:element name="getClienteResponse" type="tns:getClienteResponse"/>
+
 <xs:element name="getCuentas" type="tns:getCuentas"/>
 
 <xs:element name="getCuentasResponse" type="tns:getCuentasResponse"/>
 
+<xs:element name="getMovimiento" type="tns:getMovimiento"/>
+
+<xs:element name="getMovimientoResponse" type="tns:getMovimientoResponse"/>
+
+<xs:element name="getTipoCuenta" type="tns:getTipoCuenta"/>
+
+<xs:element name="getTipoCuentaResponse" type="tns:getTipoCuentaResponse"/>
+
+<xs:element name="getTipoMovimiento" type="tns:getTipoMovimiento"/>
+
+<xs:element name="getTipoMovimientoResponse" type="tns:getTipoMovimientoResponse"/>
+
+<xs:element name="setCliente" type="tns:setCliente"/>
+
+<xs:element name="setClienteResponse" type="tns:setClienteResponse"/>
+
 <xs:element name="setCuentas" type="tns:setCuentas"/>
 
 <xs:element name="setCuentasResponse" type="tns:setCuentasResponse"/>
+
+<xs:element name="setMovimiento" type="tns:setMovimiento"/>
+
+<xs:element name="setMovimientoResponse" type="tns:setMovimientoResponse"/>
+
+<xs:element name="setTipoCuenta" type="tns:setTipoCuenta"/>
+
+<xs:element name="setTipoCuentaResponse" type="tns:setTipoCuentaResponse"/>
+
+<xs:element name="setTipoMovimiento" type="tns:setTipoMovimiento"/>
+
+<xs:element name="setTipoMovimientoResponse" type="tns:setTipoMovimientoResponse"/>
+
+<xs:complexType name="setMovimiento">
+<xs:sequence>
+<xs:element name="arg0" type="tns:movimiento" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="movimiento">
+<xs:sequence>
+<xs:element name="cliente" type="xs:string" minOccurs="0"/>
+<xs:element name="cuenta" type="xs:string" minOccurs="0"/>
+<xs:element name="fechaMovimiento" type="tns:timestamp" minOccurs="0"/>
+<xs:element name="idCliente" type="xs:int"/>
+<xs:element name="idCuenta" type="xs:int"/>
+<xs:element name="idMovimiento" type="xs:int"/>
+<xs:element name="movimiento" type="xs:string" minOccurs="0"/>
+<xs:element name="saldoD" type="xs:double"/>
+<xs:element name="saldoQ" type="xs:double"/>
+<xs:element name="tipoCambio" type="xs:double"/>
+<xs:element name="tipoMovimiento" type="xs:int"/>
+<xs:element name="usuario" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="timestamp">
+<xs:sequence>
+<xs:element name="nanos" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setMovimientoResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getTipoMovimiento">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getTipoMovimientoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:tipoMovimiento" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="tipoMovimiento">
+<xs:sequence>
+<xs:element name="factor" type="xs:double"/>
+<xs:element name="movimiento" type="xs:string" minOccurs="0"/>
+<xs:element name="tipoMoviento" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
 
 <xs:complexType name="getCuentas">
 <xs:sequence/>
@@ -20,14 +103,94 @@
 
 <xs:complexType name="cuenta">
 <xs:sequence>
-<xs:element name="idClient" type="xs:int"/>
+<xs:element name="apellidoCliente" type="xs:string" minOccurs="0"/>
+<xs:element name="descripcion" type="xs:string" minOccurs="0"/>
+<xs:element name="idCliente" type="xs:int"/>
 <xs:element name="idCuenta" type="xs:int"/>
+<xs:element name="nombreCliente" type="xs:string" minOccurs="0"/>
 <xs:element name="numeroCuenta" type="xs:string" minOccurs="0"/>
 <xs:element name="saldoD" type="xs:double"/>
 <xs:element name="saldoQ" type="xs:double"/>
-<xs:element name="tipo" type="xs:string" minOccurs="0"/>
 <xs:element name="tipoCuenta" type="xs:int"/>
 </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getTipoCuenta">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getTipoCuentaResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:tipoCuenta" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="tipoCuenta">
+<xs:sequence>
+<xs:element name="descripcion" type="xs:string" minOccurs="0"/>
+<xs:element name="tipoCuenta" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setTipoMovimiento">
+<xs:sequence>
+<xs:element name="arg0" type="tns:tipoMovimiento" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setTipoMovimientoResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="setCliente">
+<xs:sequence>
+<xs:element name="arg0" type="tns:cliente" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cliente">
+<xs:sequence>
+<xs:element name="apellido" type="xs:string" minOccurs="0"/>
+<xs:element name="cui" type="xs:string" minOccurs="0"/>
+<xs:element name="direccion" type="xs:string" minOccurs="0"/>
+<xs:element name="idCliente" type="xs:int"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="telefono" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setClienteResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getMovimiento">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getMovimientoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:movimiento" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getCliente">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getClienteResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:cliente" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setTipoCuenta">
+<xs:sequence>
+<xs:element name="arg0" type="tns:tipoCuenta" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setTipoCuentaResponse">
+<xs:sequence/>
 </xs:complexType>
 
 <xs:complexType name="setCuentas">
