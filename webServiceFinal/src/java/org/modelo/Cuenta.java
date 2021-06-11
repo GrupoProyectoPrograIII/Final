@@ -1,41 +1,37 @@
 package org.modelo;
 
 public class Cuenta {
-    private int idClient;
+    private int idCliente;
     private int idCuenta;
     private String numeroCuenta;
     private int tipoCuenta;
-    private String tipo;
+    private String descripcion;
+    private String nombreCliente;
+    private String apellidoCliente;
     private double saldoQ;
     private double saldoD;
 
     public Cuenta() {
     }
 
-    public Cuenta(int idClient, int idCuenta, String numeroCuenta, int tipoCuenta, String tipo, double saldoQ, double saldoD) {
-        this.idClient = idClient;
+    public Cuenta(int idCliente, int idCuenta, String numeroCuenta, int tipoCuenta, String descripcion, String nombreCliente, String apellidoCliente, double saldoQ, double saldoD) {
+        this.idCliente = idCliente;
         this.idCuenta = idCuenta;
         this.numeroCuenta = numeroCuenta;
         this.tipoCuenta = tipoCuenta;
-        this.tipo = tipo;
+        this.descripcion = descripcion;
+        this.nombreCliente = nombreCliente;
+        this.apellidoCliente = apellidoCliente;
         this.saldoQ = saldoQ;
         this.saldoD = saldoD;
     }
 
-    public String getTipo() {
-        return tipo;
+    public int getIdCliente() {
+        return idCliente;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public int getIdClient() {
-        return idClient;
-    }
-
-    public void setIdClient(int idClient) {
-        this.idClient = idClient;
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     public int getIdCuenta() {
@@ -62,6 +58,30 @@ public class Cuenta {
         this.tipoCuenta = tipoCuenta;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getNombreCliente() {
+        return nombreCliente;
+    }
+
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
+    }
+
+    public String getApellidoCliente() {
+        return apellidoCliente;
+    }
+
+    public void setApellidoCliente(String apellidoCliente) {
+        this.apellidoCliente = apellidoCliente;
+    }
+
     public double getSaldoQ() {
         return saldoQ;
     }
@@ -77,5 +97,8 @@ public class Cuenta {
     public void setSaldoD(double saldoD) {
         this.saldoD = saldoD;
     }
+    
+    
+    
     
 }
