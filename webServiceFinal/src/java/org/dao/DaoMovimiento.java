@@ -17,7 +17,7 @@ public class DaoMovimiento implements CrudMovimiento{
     }
 
     @Override
-    public boolean insertar(Movimiento movimiento) {
+    public Movimiento insertar(Movimiento movimiento) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

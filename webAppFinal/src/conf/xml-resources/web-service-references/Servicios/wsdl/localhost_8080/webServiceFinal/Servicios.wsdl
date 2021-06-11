@@ -4,31 +4,31 @@
 <xsd:import namespace="http://servicios.org/" schemaLocation="http://localhost:8080/webServiceFinal/Servicios?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="setCuentas">
-<part name="parameters" element="tns:setCuentas"/>
-</message>
-<message name="setCuentasResponse">
-<part name="parameters" element="tns:setCuentasResponse"/>
-</message>
 <message name="getCuentas">
 <part name="parameters" element="tns:getCuentas"/>
 </message>
 <message name="getCuentasResponse">
 <part name="parameters" element="tns:getCuentasResponse"/>
 </message>
+<message name="setCuentas">
+<part name="parameters" element="tns:setCuentas"/>
+</message>
+<message name="setCuentasResponse">
+<part name="parameters" element="tns:setCuentasResponse"/>
+</message>
 <portType name="Servicios">
-<operation name="setCuentas">
-<input wsam:Action="http://servicios.org/Servicios/setCuentasRequest" message="tns:setCuentas"/>
-<output wsam:Action="http://servicios.org/Servicios/setCuentasResponse" message="tns:setCuentasResponse"/>
-</operation>
 <operation name="getCuentas">
 <input wsam:Action="http://servicios.org/Servicios/getCuentasRequest" message="tns:getCuentas"/>
 <output wsam:Action="http://servicios.org/Servicios/getCuentasResponse" message="tns:getCuentasResponse"/>
 </operation>
+<operation name="setCuentas">
+<input wsam:Action="http://servicios.org/Servicios/setCuentasRequest" message="tns:setCuentas"/>
+<output wsam:Action="http://servicios.org/Servicios/setCuentasResponse" message="tns:setCuentasResponse"/>
+</operation>
 </portType>
 <binding name="ServiciosPortBinding" type="tns:Servicios">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="setCuentas">
+<operation name="getCuentas">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -37,7 +37,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="getCuentas">
+<operation name="setCuentas">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
