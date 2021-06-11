@@ -50,15 +50,15 @@
                 </select>
                 <br><br>
                 <input id="cantidadD" placeholder="cantidad (en $)"><h3 id="cantidadQ">Q</h3>
-                
-                <button>Generar Transaccion</button>
+
+                <button type="submit" value="ingresar">Generar Transaccion</button>
             </form>
         </div>
         <h1 style="margin: 0 10% 0 15%; padding-top: 2%;">Estado de Cuentas</h1>
         <div style="margin: 0 13% 0 13%; padding:1% 3% 3% 3%;  background-color: red;">
 
             <h3>Cliente</h3>
-            <select>
+            <select id="clienteM" onchange="clienteM()">
                 <option disabled="true" selected="true">Seleccione un Cliente</option>
 
                 <%
@@ -71,7 +71,7 @@
             </select>
             <br><br>
 
-            <table border="1" style="width: 100%">
+            <table id="movimiento" border="1" style="width: 100%">
                 <thead>
                 <th>Id Movimiento</th>
                 <th>Fecha Movimiento</th>
@@ -83,22 +83,7 @@
                 <th>Saldo $</th>
                 </thead>
                 <tbody>
-                    <%
-                        GetMovimiento gMovimiento = new GetMovimiento();
-                        List<Movimiento> lstMovimiento = gMovimiento.getMovimiento();
-                        for (Movimiento movimiento : lstMovimiento) {
-                    %>
-                    <tr>
-                        <td><%=movimiento.getIdMovimiento()%></td>
-                        <td><%=movimiento.getFechaMovimiento()%></td>
-                        <td><%=movimiento.getApellido()%>,<%=movimiento.getNombre()%></td>
-                        <td><%=movimiento.getCuenta()%></td>
-                        <td><%=movimiento.getMovimiento()%></td>
-                        <td><%=movimiento.getTipoCambio()%></td>
-                        <td><%=movimiento.getSaldoQ()%></td>
-                        <td><%=movimiento.getSaldoD()%></td>
-                    </tr>
-                    <%}%>
+
                 </tbody>
             </table>
         </div>
@@ -115,22 +100,52 @@
             });
         });
         function datos(a) {
-            console.log(a);
             cuenta = a.split(',');
             document.getElementById("Cliente").value = ('Cliente: ' + cuenta[1] + ',' + cuenta[0]);
             $("#Cliente").text('Cliente: ' + cuenta[1] + ',' + cuenta[0]);
 
-
             document.getElementById("tipoCuenta").value = 'Cuenta de: ' + cuenta[2];
             $("#tipoCuenta").text('Cuenta de: ' + cuenta[2]);
         }
-        function cambioQ(b){
-            console.log("$"+b);
-            q= b*7.74;
-            console.log("Q"+q);
-            
+        function cambioQ(b) {
+            q = b * 7.74;
             document.getElementById("cantidadQ").value = 'Q' + q;
             $("#cantidadQ").text('Q' + q);
+        }
+        $(document).ready(function () {
+            $('#cuenta').on('change', function () {
+                clienteM(this.value);
+            });
+        });
+        function clienteM(c) {
+            var tabla = document.getElementById("movimiento").insertRow(1);
+            
+        <%
+            GetMovimiento gMovimiento = new GetMovimiento();
+            List<Movimiento> lstMovimiento = gMovimiento.getMovimiento();
+            for (Movimiento movimiento : lstMovimiento) {
+        %>
+            
+            var col1 = document.createElement("td");
+            col1.innerHTML = <%=movimiento.getIdMovimiento()%>;
+            var col2 = document.createElement("td");
+            col2.innerHTML = '<%=movimiento.getFechaMovimiento()%>';
+            var col3 = document.createElement("td");
+            col3.innerHTML = '<%=movimiento.getApellido()%>,<%=movimiento.getNombre()%>';
+            var col4 = document.createElement("td");
+            col4.innerHTML = '<%=movimiento.getCuenta()%>';
+            var col5 = document.createElement("td");
+            col5.innerHTML = '<%=movimiento.getMovimiento()%>';
+            var col6 = document.createElement("td");
+            col6.innerHTML = '<%=movimiento.getTipoCambio()%>';
+            var col7 = document.createElement("td");
+            col7.innerHTML = <%=movimiento.getSaldoQ()%>;
+            var col8 = document.createElement("td");
+            col8.innerHTML = <%=movimiento.getSaldoD()%>;
+
+            
+        <%}%>
+            tabla.append(col1,col2,col3,col4,col5,col6,col7,col8);
         }
     </script>
 </html>
