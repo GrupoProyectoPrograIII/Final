@@ -129,15 +129,14 @@ public class Servicios {
     @WebMethod(operationName="insertarMovimiento")
     public Movimiento insertarMovimiento(@WebParam(name= "idCliente")int idCliente, @WebParam(name= "idCuenta")int idCuenta, @WebParam(name= "tipoMovimiento")int tipoMovimiento, @WebParam(name= "usuario")String usuario, @WebParam(name= "tipoCambio")double tipoCambio, @WebParam(name= "saldoQ")double saldoQ, @WebParam(name= "saldoD")double saldoD){
         movimiento = new Movimiento();
-        //movimiento.setIdCliente(idCliente);
-        System.out.println("Id cuenta "+idCuenta);
+        movimiento.setIdCliente(idCliente);
         movimiento.setIdCuenta(idCuenta);
-       /* movimiento.setTipoMovimiento(tipoMovimiento);
+       movimiento.setTipoMovimiento(tipoMovimiento);
         movimiento.setUsuario(usuario);
         movimiento.setTipoCambio(tipoCambio);
         movimiento.setSaldoQ(saldoQ);
         movimiento.setSaldoD(saldoD);
-        daoMovimiento.insertar(movimiento);*/
+        daoMovimiento.insertar(movimiento);
         return movimiento;
     }
 }
