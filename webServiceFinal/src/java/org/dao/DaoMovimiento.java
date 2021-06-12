@@ -39,7 +39,7 @@ public class DaoMovimiento implements CrudMovimiento {
                 movimiento.setIdCliente(rs.getInt("ID_CLIENTE"));
                 movimiento.setNombre(rs.getString("NOMBRE"));
                 movimiento.setApellido(rs.getString("APELLIDO"));
-                movimiento.setMovimiento(rs.getString("DESCRIPCION"));
+                movimiento.setMovimiento(rs.getString("MOVIMIENTO"));
                 movimiento.setTipoCambio(rs.getDouble("TIPO_CAMBIO"));
                 movimiento.setSaldoQ(rs.getDouble("SALDO_Q"));
                 movimiento.setSaldoD(rs.getDouble("SALDO_D"));

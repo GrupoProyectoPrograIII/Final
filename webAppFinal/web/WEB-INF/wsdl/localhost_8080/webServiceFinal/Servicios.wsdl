@@ -4,29 +4,17 @@
 <xsd:import namespace="http://servicios.org/" schemaLocation="http://localhost:8080/webServiceFinal/Servicios?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="getTipoMovimiento">
-<part name="parameters" element="tns:getTipoMovimiento"/>
+<message name="insertarMovimiento">
+<part name="parameters" element="tns:insertarMovimiento"/>
 </message>
-<message name="getTipoMovimientoResponse">
-<part name="parameters" element="tns:getTipoMovimientoResponse"/>
+<message name="insertarMovimientoResponse">
+<part name="parameters" element="tns:insertarMovimientoResponse"/>
 </message>
-<message name="setTipoMovimiento">
-<part name="parameters" element="tns:setTipoMovimiento"/>
+<message name="DaQ">
+<part name="parameters" element="tns:DaQ"/>
 </message>
-<message name="setTipoMovimientoResponse">
-<part name="parameters" element="tns:setTipoMovimientoResponse"/>
-</message>
-<message name="setCuentas">
-<part name="parameters" element="tns:setCuentas"/>
-</message>
-<message name="setCuentasResponse">
-<part name="parameters" element="tns:setCuentasResponse"/>
-</message>
-<message name="getCuentas">
-<part name="parameters" element="tns:getCuentas"/>
-</message>
-<message name="getCuentasResponse">
-<part name="parameters" element="tns:getCuentasResponse"/>
+<message name="DaQResponse">
+<part name="parameters" element="tns:DaQResponse"/>
 </message>
 <message name="setCliente">
 <part name="parameters" element="tns:setCliente"/>
@@ -40,6 +28,30 @@
 <message name="getClienteResponse">
 <part name="parameters" element="tns:getClienteResponse"/>
 </message>
+<message name="getCuentas">
+<part name="parameters" element="tns:getCuentas"/>
+</message>
+<message name="getCuentasResponse">
+<part name="parameters" element="tns:getCuentasResponse"/>
+</message>
+<message name="setCuentas">
+<part name="parameters" element="tns:setCuentas"/>
+</message>
+<message name="setCuentasResponse">
+<part name="parameters" element="tns:setCuentasResponse"/>
+</message>
+<message name="getMovimiento">
+<part name="parameters" element="tns:getMovimiento"/>
+</message>
+<message name="getMovimientoResponse">
+<part name="parameters" element="tns:getMovimientoResponse"/>
+</message>
+<message name="setMovimiento">
+<part name="parameters" element="tns:setMovimiento"/>
+</message>
+<message name="setMovimientoResponse">
+<part name="parameters" element="tns:setMovimientoResponse"/>
+</message>
 <message name="getTipoCuenta">
 <part name="parameters" element="tns:getTipoCuenta"/>
 </message>
@@ -52,34 +64,38 @@
 <message name="setTipoCuentaResponse">
 <part name="parameters" element="tns:setTipoCuentaResponse"/>
 </message>
-<message name="setMovimiento">
-<part name="parameters" element="tns:setMovimiento"/>
+<message name="listarCuentaID">
+<part name="parameters" element="tns:listarCuentaID"/>
 </message>
-<message name="setMovimientoResponse">
-<part name="parameters" element="tns:setMovimientoResponse"/>
+<message name="listarCuentaIDResponse">
+<part name="parameters" element="tns:listarCuentaIDResponse"/>
 </message>
-<message name="getMovimiento">
-<part name="parameters" element="tns:getMovimiento"/>
+<message name="listarClienteID">
+<part name="parameters" element="tns:listarClienteID"/>
 </message>
-<message name="getMovimientoResponse">
-<part name="parameters" element="tns:getMovimientoResponse"/>
+<message name="listarClienteIDResponse">
+<part name="parameters" element="tns:listarClienteIDResponse"/>
+</message>
+<message name="setTipoMovimiento">
+<part name="parameters" element="tns:setTipoMovimiento"/>
+</message>
+<message name="setTipoMovimientoResponse">
+<part name="parameters" element="tns:setTipoMovimientoResponse"/>
+</message>
+<message name="getTipoMovimiento">
+<part name="parameters" element="tns:getTipoMovimiento"/>
+</message>
+<message name="getTipoMovimientoResponse">
+<part name="parameters" element="tns:getTipoMovimientoResponse"/>
 </message>
 <portType name="Servicios">
-<operation name="getTipoMovimiento">
-<input wsam:Action="http://servicios.org/Servicios/getTipoMovimientoRequest" message="tns:getTipoMovimiento"/>
-<output wsam:Action="http://servicios.org/Servicios/getTipoMovimientoResponse" message="tns:getTipoMovimientoResponse"/>
+<operation name="insertarMovimiento">
+<input wsam:Action="http://servicios.org/Servicios/insertarMovimientoRequest" message="tns:insertarMovimiento"/>
+<output wsam:Action="http://servicios.org/Servicios/insertarMovimientoResponse" message="tns:insertarMovimientoResponse"/>
 </operation>
-<operation name="setTipoMovimiento">
-<input wsam:Action="http://servicios.org/Servicios/setTipoMovimientoRequest" message="tns:setTipoMovimiento"/>
-<output wsam:Action="http://servicios.org/Servicios/setTipoMovimientoResponse" message="tns:setTipoMovimientoResponse"/>
-</operation>
-<operation name="setCuentas">
-<input wsam:Action="http://servicios.org/Servicios/setCuentasRequest" message="tns:setCuentas"/>
-<output wsam:Action="http://servicios.org/Servicios/setCuentasResponse" message="tns:setCuentasResponse"/>
-</operation>
-<operation name="getCuentas">
-<input wsam:Action="http://servicios.org/Servicios/getCuentasRequest" message="tns:getCuentas"/>
-<output wsam:Action="http://servicios.org/Servicios/getCuentasResponse" message="tns:getCuentasResponse"/>
+<operation name="DaQ">
+<input wsam:Action="http://servicios.org/Servicios/DaQRequest" message="tns:DaQ"/>
+<output wsam:Action="http://servicios.org/Servicios/DaQResponse" message="tns:DaQResponse"/>
 </operation>
 <operation name="setCliente">
 <input wsam:Action="http://servicios.org/Servicios/setClienteRequest" message="tns:setCliente"/>
@@ -89,6 +105,22 @@
 <input wsam:Action="http://servicios.org/Servicios/getClienteRequest" message="tns:getCliente"/>
 <output wsam:Action="http://servicios.org/Servicios/getClienteResponse" message="tns:getClienteResponse"/>
 </operation>
+<operation name="getCuentas">
+<input wsam:Action="http://servicios.org/Servicios/getCuentasRequest" message="tns:getCuentas"/>
+<output wsam:Action="http://servicios.org/Servicios/getCuentasResponse" message="tns:getCuentasResponse"/>
+</operation>
+<operation name="setCuentas">
+<input wsam:Action="http://servicios.org/Servicios/setCuentasRequest" message="tns:setCuentas"/>
+<output wsam:Action="http://servicios.org/Servicios/setCuentasResponse" message="tns:setCuentasResponse"/>
+</operation>
+<operation name="getMovimiento">
+<input wsam:Action="http://servicios.org/Servicios/getMovimientoRequest" message="tns:getMovimiento"/>
+<output wsam:Action="http://servicios.org/Servicios/getMovimientoResponse" message="tns:getMovimientoResponse"/>
+</operation>
+<operation name="setMovimiento">
+<input wsam:Action="http://servicios.org/Servicios/setMovimientoRequest" message="tns:setMovimiento"/>
+<output wsam:Action="http://servicios.org/Servicios/setMovimientoResponse" message="tns:setMovimientoResponse"/>
+</operation>
 <operation name="getTipoCuenta">
 <input wsam:Action="http://servicios.org/Servicios/getTipoCuentaRequest" message="tns:getTipoCuenta"/>
 <output wsam:Action="http://servicios.org/Servicios/getTipoCuentaResponse" message="tns:getTipoCuentaResponse"/>
@@ -97,18 +129,26 @@
 <input wsam:Action="http://servicios.org/Servicios/setTipoCuentaRequest" message="tns:setTipoCuenta"/>
 <output wsam:Action="http://servicios.org/Servicios/setTipoCuentaResponse" message="tns:setTipoCuentaResponse"/>
 </operation>
-<operation name="setMovimiento">
-<input wsam:Action="http://servicios.org/Servicios/setMovimientoRequest" message="tns:setMovimiento"/>
-<output wsam:Action="http://servicios.org/Servicios/setMovimientoResponse" message="tns:setMovimientoResponse"/>
+<operation name="listarCuentaID">
+<input wsam:Action="http://servicios.org/Servicios/listarCuentaIDRequest" message="tns:listarCuentaID"/>
+<output wsam:Action="http://servicios.org/Servicios/listarCuentaIDResponse" message="tns:listarCuentaIDResponse"/>
 </operation>
-<operation name="getMovimiento">
-<input wsam:Action="http://servicios.org/Servicios/getMovimientoRequest" message="tns:getMovimiento"/>
-<output wsam:Action="http://servicios.org/Servicios/getMovimientoResponse" message="tns:getMovimientoResponse"/>
+<operation name="listarClienteID">
+<input wsam:Action="http://servicios.org/Servicios/listarClienteIDRequest" message="tns:listarClienteID"/>
+<output wsam:Action="http://servicios.org/Servicios/listarClienteIDResponse" message="tns:listarClienteIDResponse"/>
+</operation>
+<operation name="setTipoMovimiento">
+<input wsam:Action="http://servicios.org/Servicios/setTipoMovimientoRequest" message="tns:setTipoMovimiento"/>
+<output wsam:Action="http://servicios.org/Servicios/setTipoMovimientoResponse" message="tns:setTipoMovimientoResponse"/>
+</operation>
+<operation name="getTipoMovimiento">
+<input wsam:Action="http://servicios.org/Servicios/getTipoMovimientoRequest" message="tns:getTipoMovimiento"/>
+<output wsam:Action="http://servicios.org/Servicios/getTipoMovimientoResponse" message="tns:getTipoMovimientoResponse"/>
 </operation>
 </portType>
 <binding name="ServiciosPortBinding" type="tns:Servicios">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="getTipoMovimiento">
+<operation name="insertarMovimiento">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -117,25 +157,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="setTipoMovimiento">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="setCuentas">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="getCuentas">
+<operation name="DaQ">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -162,6 +184,42 @@
 <soap:body use="literal"/>
 </output>
 </operation>
+<operation name="getCuentas">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="setCuentas">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getMovimiento">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="setMovimiento">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="getTipoCuenta">
 <soap:operation soapAction=""/>
 <input>
@@ -180,7 +238,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="setMovimiento">
+<operation name="listarCuentaID">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -189,7 +247,25 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="getMovimiento">
+<operation name="listarClienteID">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="setTipoMovimiento">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getTipoMovimiento">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

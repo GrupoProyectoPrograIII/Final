@@ -1,5 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.2-b608 (trunk-7979; 2015-01-21T12:50:19+0000) JAXWS-RI/2.2.11-b150120.1832 JAXWS-API/2.2.12 JAXB-RI/2.2.12-b141219.1637 JAXB-API/2.2.13-b141020.1521 svn-revision#unknown. --><xs:schema xmlns:tns="http://servicios.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://servicios.org/">
 
+<xs:element name="DaQ" type="tns:DaQ"/>
+
+<xs:element name="DaQResponse" type="tns:DaQResponse"/>
+
 <xs:element name="getCliente" type="tns:getCliente"/>
 
 <xs:element name="getClienteResponse" type="tns:getClienteResponse"/>
@@ -19,6 +23,18 @@
 <xs:element name="getTipoMovimiento" type="tns:getTipoMovimiento"/>
 
 <xs:element name="getTipoMovimientoResponse" type="tns:getTipoMovimientoResponse"/>
+
+<xs:element name="insertarMovimiento" type="tns:insertarMovimiento"/>
+
+<xs:element name="insertarMovimientoResponse" type="tns:insertarMovimientoResponse"/>
+
+<xs:element name="listarClienteID" type="tns:listarClienteID"/>
+
+<xs:element name="listarClienteIDResponse" type="tns:listarClienteIDResponse"/>
+
+<xs:element name="listarCuentaID" type="tns:listarCuentaID"/>
+
+<xs:element name="listarCuentaIDResponse" type="tns:listarCuentaIDResponse"/>
 
 <xs:element name="setCliente" type="tns:setCliente"/>
 
@@ -68,31 +84,15 @@
 <xs:sequence/>
 </xs:complexType>
 
-<xs:complexType name="getTipoMovimiento">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="getTipoMovimientoResponse">
+<xs:complexType name="listarCuentaID">
 <xs:sequence>
-<xs:element name="return" type="tns:tipoMovimiento" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="idCuenta" type="xs:int"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="tipoMovimiento">
+<xs:complexType name="listarCuentaIDResponse">
 <xs:sequence>
-<xs:element name="factor" type="xs:double"/>
-<xs:element name="movimiento" type="xs:string" minOccurs="0"/>
-<xs:element name="tipoMoviento" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getCuentas">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="getCuentasResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:cuenta" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="return" type="tns:cuenta" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -107,6 +107,16 @@
 <xs:element name="saldoD" type="xs:double"/>
 <xs:element name="saldoQ" type="xs:double"/>
 <xs:element name="tipoCuenta" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getCuentas">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getCuentasResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:cuenta" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -127,9 +137,35 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="insertarMovimiento">
+<xs:sequence>
+<xs:element name="idCliente" type="xs:int"/>
+<xs:element name="idCuenta" type="xs:int"/>
+<xs:element name="tipoMovimiento" type="xs:int"/>
+<xs:element name="usuario" type="xs:string" minOccurs="0"/>
+<xs:element name="tipoCambio" type="xs:double"/>
+<xs:element name="saldoQ" type="xs:double"/>
+<xs:element name="saldoD" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="insertarMovimientoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:movimiento" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="setTipoMovimiento">
 <xs:sequence>
 <xs:element name="arg0" type="tns:tipoMovimiento" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="tipoMovimiento">
+<xs:sequence>
+<xs:element name="factor" type="xs:double"/>
+<xs:element name="movimiento" type="xs:string" minOccurs="0"/>
+<xs:element name="tipoMoviento" type="xs:int"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -137,9 +173,25 @@
 <xs:sequence/>
 </xs:complexType>
 
-<xs:complexType name="setCliente">
+<xs:complexType name="DaQ">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="DaQResponse">
 <xs:sequence>
-<xs:element name="arg0" type="tns:cliente" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="return" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarClienteID">
+<xs:sequence>
+<xs:element name="idCliente" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarClienteIDResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:cliente" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -151,6 +203,32 @@
 <xs:element name="idCliente" type="xs:int"/>
 <xs:element name="nombre" type="xs:string" minOccurs="0"/>
 <xs:element name="telefono" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setCuentas">
+<xs:sequence>
+<xs:element name="arg0" type="tns:cuenta" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setCuentasResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getTipoMovimiento">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getTipoMovimientoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:tipoMovimiento" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setCliente">
+<xs:sequence>
+<xs:element name="arg0" type="tns:cliente" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -185,16 +263,6 @@
 </xs:complexType>
 
 <xs:complexType name="setTipoCuentaResponse">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="setCuentas">
-<xs:sequence>
-<xs:element name="arg0" type="tns:cuenta" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="setCuentasResponse">
 <xs:sequence/>
 </xs:complexType>
 </xs:schema>

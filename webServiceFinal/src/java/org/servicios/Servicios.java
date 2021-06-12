@@ -1,5 +1,9 @@
 package org.servicios;
 
+import gt.gob.banguat.variables.ws.TipoCambio;
+import gt.gob.banguat.variables.ws.TipoCambioSoap;
+import gt.gob.banguat.variables.ws.VarDolar;
+import java.util.Iterator;
 import java.util.List;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
@@ -17,8 +21,7 @@ import org.modelo.TipoMovimiento;
 
 @WebService(serviceName = "Servicios")
 public class Servicios {
-
-
+    
     DaoCuenta daoCuenta = new DaoCuenta();
     DaoCliente daoCliente = new DaoCliente();
     DaoMovimiento daoMovimiento = new DaoMovimiento();
@@ -75,7 +78,7 @@ public class Servicios {
         lstTipoCuenta = daoTipoCuenta.listar();
         return lstTipoCuenta;
     }
-    
+
     @WebMethod(operationName = "setTipoCuenta")
     public void setLstTipoCuenta(List<TipoCuenta> lstTipoCuenta) {
         this.lstTipoCuenta = lstTipoCuenta;
@@ -108,5 +111,33 @@ public class Servicios {
     public Cuenta listarCuentaID(@WebParam(name = "idCuenta") int idCuenta) {
         Cuenta id = daoCuenta.list(idCuenta);
         return id;
+    }
+
+    @WebMethod(operationName = "DaQ")
+    public double DaQ() {
+        TipoCambio tc = new TipoCambio();
+        TipoCambioSoap tcs = tc.getTipoCambioSoap();
+        List<VarDolar> varDolar = tcs.tipoCambioDia().getCambioDolar().getVarDolar();
+        Iterator<VarDolar> iterVarDolar = varDolar.iterator();
+        VarDolar mivd = null;
+        iterVarDolar.hasNext();
+        mivd = iterVarDolar.next();
+        double q = mivd.getReferencia();
+        return q;
+    }
+
+    @WebMethod(operationName="insertarMovimiento")
+    public Movimiento insertarMovimiento(@WebParam(name= "idCliente")int idCliente, @WebParam(name= "idCuenta")int idCuenta, @WebParam(name= "tipoMovimiento")int tipoMovimiento, @WebParam(name= "usuario")String usuario, @WebParam(name= "tipoCambio")double tipoCambio, @WebParam(name= "saldoQ")double saldoQ, @WebParam(name= "saldoD")double saldoD){
+        movimiento = new Movimiento();
+        //movimiento.setIdCliente(idCliente);
+        System.out.println("Id cuenta "+idCuenta);
+        movimiento.setIdCuenta(idCuenta);
+       /* movimiento.setTipoMovimiento(tipoMovimiento);
+        movimiento.setUsuario(usuario);
+        movimiento.setTipoCambio(tipoCambio);
+        movimiento.setSaldoQ(saldoQ);
+        movimiento.setSaldoD(saldoD);
+        daoMovimiento.insertar(movimiento);*/
+        return movimiento;
     }
 }

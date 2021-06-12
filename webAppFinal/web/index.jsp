@@ -1,4 +1,5 @@
 
+<%@page import="org.servicios.DaQ"%>
 <%@page import="org.servicios.GetMovimiento"%>
 <%@page import="org.servicios.Movimiento"%>
 <%@page import="org.servicios.Cliente"%>
@@ -21,12 +22,12 @@
     <body>
         <h1 style="margin: 0 20% 0 15%; padding-top: 2%;">Transacciones</h1>
         <div style="margin: 0 13% 0 13%; padding:1% 3% 3% 3%;  background-color: red;">
-            <form>
+            <form id="transaccion" method="POST" action="insertarMovimientoResponse">
                 <h3 id="fecha"></h3>
                 <table style="width:100%; text-align: center;">
                     <td>
                         <h3>Cuentas:</h3>
-                        <select id="cuenta">
+                        <select id="cuenta" name="cuenta">
                             <option disabled="true" selected="true">Seleccione una cuenta</option>
                             <%
                                 GetCuentas gCuentas = new GetCuentas();
@@ -42,18 +43,19 @@
                     </td>
                     <%
                         GetCliente gCliente = new GetCliente();
-                        List<Cliente> lstCliente = gCliente.getCliente();
+                        List<Cliente> lstCliente = gCliente.getCliente(); 
                     %>
 
                     <td>
                         <h3 id="Cliente">Cliente:</h3>
+                        
                     </td>
                     <td>
                         <h3>Tipo de Transaccion:</h3>
-                        <select>
+                        <select name="tipoMovimiento">
                             <option disabled="true" selected="true">Seleccione</option>
-                            <option> Abono</option>
-                            <option> Retiro</option>
+                            <option value="2"> Abono</option>
+                            <option value="1"> Retiro</option>
                         </select>
                     </td>
                     <td>
@@ -62,9 +64,17 @@
                     </td>
                 </table>
                 <br>
-                <button type="submit" value="ingresar">Generar Transaccion</button>
+                <input id="idCliente" name="idCliente" hidden="true" value=" ">
+                <input id="idCuenta" name="idCuenta"hidden="true" value="1">
+                <input id="tipoMovimiento" name="tipoMovimiento" hidden="true" value=" ">
+                <input id="usuario" name="usuario" hidden="true" value=" ">
+                <input id="tipoCambio" name="tipoCambio" hidden="true" value=" ">
+                <input id="saldoQ" name="saldoQ" hidden="true" value=" ">
+                <input id="saldoD" name="saldoD" hidden="true" value=" ">
+                <button type="submit" value="submit">Generar Transaccion</button>
             </form>
         </div>
+                    
         <h1 style="margin: 0 10% 0 15%; padding-top: 2%;">Estado de Cuentas</h1>
         <div style="margin: 0 13% 5% 13%; padding:1% 3% 3% 3%;  background-color: red;">
 
@@ -77,7 +87,7 @@
                     lstCliente = gCliente.getCliente();
                     for (Cliente cliente : lstCliente) {
                 %>
-                <option value="<%=cliente.getIdCliente()%>" ><%=cliente.getApellido()%>, <%=cliente.getNombre()%></option>
+                <option value="<%=cliente.getIdCliente()%>" ><%=cliente.getNombre()%>,<%=cliente.getApellido()%></option>
                 <%}%>
             </select>
             <h3 id="Saldo" style="text-align:right">Saldo Actual: $0.00 Q0.00</h3>
@@ -114,14 +124,21 @@
         });
         function datos(a) {
             cuenta = a.split(',');
-            document.getElementById("Cliente").value = ('Cliente: ' + cuenta[1] + ',' + cuenta[0]);
-            $("#Cliente").text('Cliente: ' + cuenta[1] + ',' + cuenta[0]);
+            document.getElementById("Cliente").value = ('Cliente: ' + cuenta[0] + ',' + cuenta[1]);
+            $("#Cliente").text('Cliente: ' + cuenta[0] + ',' + cuenta[1]);
 
-            document.getElementById("tipoCuenta").value = 'Cuenta de: ' + cuenta[2];
-            $("#tipoCuenta").text('Cuenta de: ' + cuenta[2]);
+            document.getElementById("tipoCuenta").value = 'Cuenta: ' + cuenta[2];
+            $("#tipoCuenta").text('Cuenta: ' + cuenta[2]);
+            
+            
         }
         function cambioQ(b) {
-            q = b * 7.74;
+            <%
+                DaQ daq = new DaQ();
+            %>
+            var cambio = <%=daq.daQ()%>;
+            q = b * cambio;
+            q = Math.round(q * 100) / 100;
             document.getElementById("cantidadQ").value = 'Q' + q;
             $("#cantidadQ").text('Cambio de $ a Q: Q' + q);
         }
@@ -156,7 +173,7 @@
                 var col2 = document.createElement("td");
                 col2.innerHTML = '<%=movimiento.getFechaMovimiento()%>';
                 var col3 = document.createElement("td");
-                col3.innerHTML = '<%=movimiento.getApellido()%>,<%=movimiento.getNombre()%>';
+                col3.innerHTML = '<%=movimiento.getNombre()%>, <%=movimiento.getApellido()%>';
                 var col4 = document.createElement("td");
                 col4.innerHTML = '<%=movimiento.getCuenta()%>';
                 var col5 = document.createElement("td");
@@ -174,7 +191,7 @@
                 <%  GetCuentas gCuenta = new GetCuentas();
                     lstCuenta = gCuenta.getCuentas();
                     for (Cuenta cuenta : lstCuenta) {%>
-                 if(c == <%=cuenta.getIdCliente()%> ){    
+                 if(c === <%=cuenta.getIdCliente()%> ){    
                      
                 document.getElementById("Saldo").value = 'Saldo Actual: $'+<%=cuenta.getSaldoD()%>+ 'Q'+<%=cuenta.getSaldoQ()%>;
                 $("#Saldo").text('Saldo Actual: $'+<%=cuenta.getSaldoD()%>+ 'Q'+<%=cuenta.getSaldoQ()%>);
