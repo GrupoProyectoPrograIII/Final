@@ -1,11 +1,9 @@
 package org.servicios;
 
-import gt.gob.banguat.variables.ws.TipoCambio;
 import java.util.List;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
-import javax.xml.ws.WebServiceRef;
 import org.dao.DaoCliente;
 import org.dao.DaoCuenta;
 import org.dao.DaoMovimiento;
@@ -20,8 +18,6 @@ import org.modelo.TipoMovimiento;
 @WebService(serviceName = "Servicios")
 public class Servicios {
 
-    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/www.banguat.gob.gt/variables/ws/TipoCambio.asmx.wsdl")
-    private TipoCambio service;
 
     DaoCuenta daoCuenta = new DaoCuenta();
     DaoCliente daoCliente = new DaoCliente();
