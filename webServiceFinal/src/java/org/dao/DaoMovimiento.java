@@ -69,7 +69,7 @@ public class DaoMovimiento implements CrudMovimiento {
             Statement stmt = conexion.open().createStatement();
             strSql = "INSERT INTO MOVIMIENTOS (FEC_MOVIMIENTO,ID_CLIENTE,ID_CUENTA,TIPO_MOVIMIENTO,USUARIO,TIPO_CAMBIO,SALDO_Q,SALDO_D) VALUES (CURRENT_TIMESTAMP," + movimiento.getIdCliente() + ", " + movimiento.getIdCuenta() + ", " + movimiento.getTipoMovimiento() + ",'" + movimiento.getUsuario() + "', " + movimiento.getTipoCambio() + ", " + movimiento.getSaldoQ() + ", " + movimiento.getSaldoD() + ")";
             stmt.executeUpdate(strSql);
-            cuenta = selectCuenta(movimiento.getIdCuenta());
+            cuenta = miCuenta(movimiento.getIdCuenta());
             if (movimiento.getTipoMovimiento() == 1) {
                 strSql2 = "UPDATE CUENTA SET ID_CLIENTE = " + cuenta.getIdCuenta() + ", NUMERO_CUENTA = '" + cuenta.getNumeroCuenta() + "', TIPO_CUENTA = " + cuenta.getTipoCuenta() + ", SALDO_Q = " + (cuenta.getSaldoQ() - movimiento.getSaldoQ()) + ", SALDO_D = " + (cuenta.getSaldoQ() - movimiento.getSaldoD()) + " WHERE ID_CUENTA = " + cuenta.getIdCuenta();
             } else {
@@ -106,7 +106,7 @@ public class DaoMovimiento implements CrudMovimiento {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Cuenta selectCuenta(int id) {
+    public Cuenta miCuenta(int id) {
         Cuenta cuenta = new Cuenta();
         try {
             strSql = "SELECT * FROM CUENTA WHERE ID_CUENTA=" + id;
