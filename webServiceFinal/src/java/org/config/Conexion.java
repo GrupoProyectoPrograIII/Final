@@ -9,12 +9,8 @@ public class Conexion {
     private ResultSet resultado = null;
     Connection con;
     
-    //Cadena de Conexion    
-    //AQUI debe ir el nombre de su servidor SQL***
     String stringConnectionUrl = "jdbc:sqlserver://localhost:1433; databaseName=TEMARIOIIIA;";
-    //Driver o controlador JDBC
     String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    //
     private final String user = "sa";
     private final String pass= "1234";
     private boolean respuesta = false;
