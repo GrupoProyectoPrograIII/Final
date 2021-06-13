@@ -68,12 +68,15 @@ public class DaoMovimiento implements CrudMovimiento {
             conexion.open().setAutoCommit(false);
             Statement stmt = conexion.open().createStatement();
             strSql = "INSERT INTO MOVIMIENTOS (FEC_MOVIMIENTO,ID_CLIENTE,ID_CUENTA,TIPO_MOVIMIENTO,USUARIO,TIPO_CAMBIO,SALDO_Q,SALDO_D) VALUES (CURRENT_TIMESTAMP," + movimiento.getIdCliente() + ", " + movimiento.getIdCuenta() + ", " + movimiento.getTipoMovimiento() + ",'" + movimiento.getUsuario() + "', " + movimiento.getTipoCambio() + ", " + movimiento.getSaldoQ() + ", " + movimiento.getSaldoD() + ")";
+            System.out.println(strSql);
             stmt.executeUpdate(strSql);
             cuenta = miCuenta(movimiento.getIdCuenta());
             if (movimiento.getTipoMovimiento() == 1) {
-                strSql2 = "UPDATE CUENTA SET ID_CLIENTE = " + cuenta.getIdCuenta() + ", NUMERO_CUENTA = '" + cuenta.getNumeroCuenta() + "', TIPO_CUENTA = " + cuenta.getTipoCuenta() + ", SALDO_Q = " + (cuenta.getSaldoQ() - movimiento.getSaldoQ()) + ", SALDO_D = " + (cuenta.getSaldoQ() - movimiento.getSaldoD()) + " WHERE ID_CUENTA = " + cuenta.getIdCuenta();
+                strSql2 = "UPDATE CUENTA SET ID_CLIENTE = " + cuenta.getIdCuenta() + ", NUMERO_CUENTA = '" + cuenta.getNumeroCuenta() + "', TIPO_CUENTA = " + cuenta.getTipoCuenta() + ", SALDO_Q = " + (cuenta.getSaldoQ() - movimiento.getSaldoQ()) + ", SALDO_D = " + (cuenta.getSaldoD() - movimiento.getSaldoD()) + " WHERE ID_CUENTA = " + cuenta.getIdCuenta();
+                System.out.println("Update de Retiro: " + strSql2);
             } else {
-                strSql2 = "UPDATE CUENTA SET ID_CLIENTE = " + cuenta.getIdCuenta() + ", NUMERO_CUENTA = '" + cuenta.getNumeroCuenta() + "', TIPO_CUENTA = " + cuenta.getTipoCuenta() + ", SALDO_Q = " + (cuenta.getSaldoQ() + movimiento.getSaldoQ()) + ", SALDO_D = " + (cuenta.getSaldoQ() + movimiento.getSaldoD()) + " WHERE ID_CUENTA = " + cuenta.getIdCuenta();
+                strSql2 = "UPDATE CUENTA SET ID_CLIENTE = " + cuenta.getIdCuenta() + ", NUMERO_CUENTA = '" + cuenta.getNumeroCuenta() + "', TIPO_CUENTA = " + cuenta.getTipoCuenta() + ", SALDO_Q = " + (cuenta.getSaldoQ() + movimiento.getSaldoQ()) + ", SALDO_D = " + (cuenta.getSaldoD() + movimiento.getSaldoD()) + " WHERE ID_CUENTA = " + cuenta.getIdCuenta();
+                System.out.println("Update de Abono: " + strSql2);
             }
             stmt.executeUpdate(strSql2);
             conexion.open().commit();
@@ -110,6 +113,7 @@ public class DaoMovimiento implements CrudMovimiento {
         Cuenta cuenta = new Cuenta();
         try {
             strSql = "SELECT * FROM CUENTA WHERE ID_CUENTA=" + id;
+            System.out.println("Cuenta: "+ strSql);
             conexion.open();
             rs = conexion.executeQuery(strSql);
             while (rs.next()) {
@@ -127,6 +131,7 @@ public class DaoMovimiento implements CrudMovimiento {
         } catch (Exception ex) {
             Logger.getLogger(DaoCuenta.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println("Saldo Q:" + cuenta.getSaldoQ() + " Saldo $:" + cuenta.getSaldoD());
         return cuenta;
     }
 }

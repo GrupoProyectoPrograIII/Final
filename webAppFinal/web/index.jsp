@@ -91,7 +91,7 @@
                 <option value="<%=cliente.getIdCliente()%>" ><%=cliente.getNombre()%>,<%=cliente.getApellido()%></option>
                 <%}%>
             </select>
-            <h3 id="Saldo" style="text-align:right">Saldo Actual: $0.00 Q0.00</h3>
+            <h3 id="Saldos" style="text-align:right">Saldo Actual: $0.00 Q0.00</h3>
             <table id="movimiento" border="1" style="width: 100%; margin: 0 1% 0 1%;">
                 <thead>
                 <th>Id Movimiento</th>
@@ -226,8 +226,8 @@
                     for (Cuenta cuenta : lstCuenta) {%>
                         if (c == <%=cuenta.getIdCliente()%>) {
 
-                            document.getElementById("Saldo").value = 'Saldo Actual: $' +<%=cuenta.getSaldoD()%> + 'Q' +<%=cuenta.getSaldoQ()%>;
-                            $("#Saldo").text('Saldo Actual: $' +<%=cuenta.getSaldoD()%> + 'Q' +<%=cuenta.getSaldoQ()%>);
+                            document.getElementById("Saldos").value = 'Saldo Actual: $' +<%=cuenta.getSaldoD()%> + 'Q' +<%=cuenta.getSaldoQ()%>;
+                            $("#Saldos").text('Saldo Actual: $' + <%=cuenta.getSaldoD()%> + 'Q' + <%=cuenta.getSaldoQ()%>);
 
                         }
         <%}%>

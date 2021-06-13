@@ -56,6 +56,7 @@ public class controladorMovimiento extends HttpServlet {
                 saldoQ =Double.parseDouble(request.getParameter("saldoQ"));
                 saldoD =Double.parseDouble(request.getParameter("saldoD"));
                 im.insertarMovimiento(idCliente, idCuenta, tipoMovimiento, usuario, tipoCambio, saldoQ, saldoD);
+                System.out.println("Variables"+idCliente+ idCuenta+ tipoMovimiento+ usuario+ tipoCambio+ saldoQ+ saldoD);
                 acceso = "index.jsp";
                 break;
 
