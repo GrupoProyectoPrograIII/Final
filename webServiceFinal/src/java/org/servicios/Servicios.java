@@ -21,25 +21,27 @@ import org.modelo.TipoMovimiento;
 
 @WebService(serviceName = "Servicios")
 public class Servicios {
-    
+    //Dao
     DaoCuenta daoCuenta = new DaoCuenta();
     DaoCliente daoCliente = new DaoCliente();
     DaoMovimiento daoMovimiento = new DaoMovimiento();
     DaoTipoCuenta daoTipoCuenta = new DaoTipoCuenta();
     DaoTipoMovimiento daoTipoMovimiento = new DaoTipoMovimiento();
-
+    //Modelo
     Cuenta cuenta = new Cuenta();
     Cliente cliente = new Cliente();
     Movimiento movimiento = new Movimiento();
     TipoCuenta tipoCuenta = new TipoCuenta();
     TipoMovimiento tipoMovimiento = new TipoMovimiento();
-
+    //Listas
     List<Cuenta> lstCuenta;
     List<Cliente> lstCliente;
     List<Movimiento> lstMovimiento;
     List<TipoCuenta> lstTipoCuenta;
     List<TipoMovimiento> lstTipoMovimiento;
 
+    
+    //Metodos Get y Set
     @WebMethod(operationName = "getCuentas")
     public List<Cuenta> getLstCuentas() {
         lstCuenta = daoCuenta.listar();
@@ -94,10 +96,8 @@ public class Servicios {
     public void setLstTipoMovimiento(List<TipoMovimiento> lstTipoMovimiento) {
         this.lstTipoMovimiento = lstTipoMovimiento;
     }
-
-    /**
-     * Web service operation
-     */
+    
+    //Funciones Listar
     @WebMethod(operationName = "listarClienteID")
     public Cliente listarClienteID(@WebParam(name = "idCliente") int idCliente) {
         Cliente id = daoCliente.list(idCliente);
@@ -112,7 +112,8 @@ public class Servicios {
         Cuenta id = daoCuenta.list(idCuenta);
         return id;
     }
-
+    
+    //Metodo para cambiar Dolar a Quetzales
     @WebMethod(operationName = "DaQ")
     public double DaQ() {
         TipoCambio tc = new TipoCambio();
@@ -125,7 +126,8 @@ public class Servicios {
         double q = mivd.getReferencia();
         return q;
     }
-
+    
+    //Insertar Movimiento 
     @WebMethod(operationName="insertarMovimiento")
     public Movimiento insertarMovimiento(@WebParam(name= "idCliente")int idCliente, @WebParam(name= "idCuenta")int idCuenta, @WebParam(name= "tipoMovimiento")int tipoMovimiento, @WebParam(name= "usuario")String usuario, @WebParam(name= "tipoCambio")double tipoCambio, @WebParam(name= "saldoQ")double saldoQ, @WebParam(name= "saldoD")double saldoD){
         movimiento = new Movimiento();
